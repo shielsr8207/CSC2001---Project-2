@@ -1,13 +1,13 @@
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public class ArrayStack {
+public class ArrayStack<T> {
 
-    private int[] data;
+    private T[] data;
     private int size;
 
     // Purpose: Creates an empty stack with a default starting capacity of 10.
-    // Example: ArrayStack s = new ArrayStack();
+    // Example: ArrayStack<Integer> s = new ArrayStack();
     // s.size() = 0, s.isEmpty() = true
     public ArrayStack() {
         this(10);
@@ -22,7 +22,7 @@ public class ArrayStack {
         if (capacity < 1) {
             throw new IllegalArgumentException();
         }
-        data = new int[capacity];
+        data = (T[]) new Object[capacity];
     }
 
     // Purpose: Places value on the top of the stack. If the array is full,
@@ -30,7 +30,7 @@ public class ArrayStack {
     // Example: s is empty
     // s.push(4); s.push(7);
     // s.peek() = 7, s.size() = 2
-    public void push(int value) {
+    public void push(T value) {
         if (size == data.length) {
             data = Arrays.copyOf(data, data.length * 2);
         }
@@ -42,7 +42,7 @@ public class ArrayStack {
     // Throws NoSuchElementException if the stack is empty. O(1).
     // Example: s holds 4, 7 (7 on top)
     // s.pop() = 7, then s.peek() = 4, s.size() = 1
-    public int pop() {
+    public T pop() {
         if (size == 0) {
             throw new NoSuchElementException();
         }
@@ -54,7 +54,7 @@ public class ArrayStack {
     // Throws NoSuchElementException if the stack is empty. O(1).
     // Example: s holds 4, 7 (7 on top)
     // s.peek() = 7, s.size() = 2 (unchanged)
-    public int peek() {
+    public T peek() {
         if (size == 0) {
             throw new NoSuchElementException();
         }
@@ -65,6 +65,7 @@ public class ArrayStack {
     // Example: new ArrayStack().isEmpty() = true
     // after s.push(3): s.isEmpty() = false
     public boolean isEmpty() {
+
         return size == 0;
     }
 
@@ -73,5 +74,6 @@ public class ArrayStack {
     // s.size() = 3
     public int size() {
         return size;
+
     }
 }

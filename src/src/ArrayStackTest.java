@@ -6,30 +6,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayStackTest {
     // A fresh, empty stack is created for each test.
-    public ArrayStack testArray = new ArrayStack();
+    public ArrayStack<Object> testArray = new ArrayStack<>();
 
     // Purpose: Checks that each push places the new value on top of the stack.
     @Test
     public void push() {
-        testArray.push(1);
-        assertEquals(1, testArray.peek());
+        testArray.push("one");
+        assertEquals("one", testArray.peek());
         testArray.push(2);
         assertEquals(2, testArray.peek());
-        testArray.push(3);
-        assertEquals(3, testArray.peek());
+        testArray.push(true);
+        assertEquals(true, testArray.peek());
     }
 
     // Purpose: Checks that pop removes and returns values in last-in, first-out
     //  order, and throws NoSuchElementException once the stack is empty.
     @Test
     public void pop() {
-        testArray.push(1);
+        testArray.push("one");
         testArray.push(2);
-        testArray.push(3);
+        testArray.push(4.0);
         testArray.pop();
         assertEquals(2, testArray.peek());
         assertEquals(2, testArray.pop());
-        assertEquals(1, testArray.pop());
+        assertEquals("one", testArray.pop());
         assertThrows(NoSuchElementException.class, () -> testArray.pop());
     }
 
@@ -38,8 +38,8 @@ public class ArrayStackTest {
     @Test
     public void peek() {
         testArray.push(1);
-        testArray.push(2);
-        assertEquals(2, testArray.peek());
+        testArray.push("two");
+        assertEquals("two", testArray.peek());
         testArray.pop();
         assertEquals(1, testArray.peek());
         testArray.pop();
@@ -51,7 +51,7 @@ public class ArrayStackTest {
     @Test
     public void isEmpty() {
         testArray.push(1);
-        testArray.push(2);
+        testArray.push("2");
         assertFalse(testArray.isEmpty());
         testArray.pop();
         assertFalse(testArray.isEmpty());
@@ -64,7 +64,7 @@ public class ArrayStackTest {
     @Test
     public void size() {
         testArray.push(1);
-        testArray.push(2);
+        testArray.push(true);
         assertEquals(2, testArray.size());
         testArray.pop();
         testArray.pop();
